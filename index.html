@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      list-style: none;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .title {
+      margin-top: 10px;
+      color: orange;
+      user-select: none;
+    }
+    .calendar-card {
+      border: 1px solid rgb(206, 31, 203);
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgb(206, 31, 203);
+      padding: 20px;
+      width: 400px;
+      height: 400px;
+    }
+    #title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .days-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 6px;
+      user-select: none;
+    }
+
+    .weekday {
+      text-align: center;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    #calendar-days div {
+      text-align: center;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      user-select: none;
+    }
+    #calendar-days .today {
+      background-color: rgb(244, 166, 246);
+      color: white;
+
+      width: 35px;
+      height: 35px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      clip-path: polygon(
+        50% 90%,
+        10% 50%,
+        0% 35%,
+        5% 15%,
+        20% 5%,
+        35% 5%,
+        50% 25%,
+        65% 5%,
+        80% 5%,
+        95% 15%,
+        100% 35%,
+        90% 50%
+      );
+    }
+  </style>
+  <body>
+    <div class="calendar-card">
+      <div id="title" class="calendar-header">
+        <button id="prevBtn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            viewBox="0 0 24 24"
+          >
+            <!-- Icon from Google Material Icons by Material Design Authors - https://github.com/material-icons/material-icons/blob/master/LICENSE -->
+            <path
+              fill="currentColor"
+              d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6l6 6z"
+            />
+          </svg>
+        </button>
+        <h2 class="title">2026 Calendar</h2>
+        <button id="nextBtn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="25"
+            viewBox="0 0 24 24"
+          >
+            <!-- Icon from Google Material Icons by Material Design Authors - https://github.com/material-icons/material-icons/blob/master/LICENSE -->
+            <path
+              fill="currentColor"
+              d="M8.59 16.59L13.17 12L8.59 7.41L10 6l6 6l-6 6z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div id="calendar-days" class="days-grid">
+        <div class="weekday">Sun</div>
+        <div class="weekday">Mon</div>
+        <div class="weekday">Tue</div>
+        <div class="weekday">Wed</div>
+        <div class="weekday">Thu</div>
+        <div class="weekday">Fri</div>
+        <div class="weekday">Sat</div>
+      </div>
+    </div>
+    <script>
+      const calendarDays = document.getElementById("calendar-days");
+
+      const today = new Date();
+      const thisYear = today.getFullYear();
+      const thisMonth = today.getMonth();
+
+      const totalDays = new Date(thisYear, thisMonth + 1, 0).getDate();
+
+      const firstDay = new Date(thisYear, thisMonth, 1).getDay();
+
+      for (let i = 0; i < firstDay; i++) {
+        const emptyCell = document.createElement("div");
+        calendarDays.appendChild(emptyCell);
+      }
+
+      for (let day = 1; day <= totalDays; day++) {
+        const dayElement = document.createElement("div");
+
+        dayElement.textContent = day;
+
+        const todayDate = today.getDate();
+        if (day === todayDate) {
+          dayElement.classList.add("today");
+        }
+
+        calendarDays.appendChild(dayElement);
+      }
+    </script>
+  </body>
+</html>
