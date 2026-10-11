@@ -49,6 +49,34 @@
       text-align: center;
       font-weight: bold;
       padding: 10px;
+      pointer-events: none;
+    }
+
+    #calendar-days :hover {
+      background-color: rgb(204, 235, 249);
+      color: white;
+
+      width: 35px;
+      height: 35px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      clip-path: polygon(
+        50% 90%,
+        10% 50%,
+        0% 35%,
+        5% 15%,
+        20% 5%,
+        35% 5%,
+        50% 25%,
+        65% 5%,
+        80% 5%,
+        95% 15%,
+        100% 35%,
+        90% 50%
+      );
     }
 
     #calendar-days div {
